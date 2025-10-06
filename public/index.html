@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinemojis Multiplayer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Menu Principal -->
+    <div id="menu" class="screen active">
+        <div class="menu-container">
+            <div class="logo">🎬 Cinemojis</div>
+            <div class="subtitle">Adivinhe o filme pelos emojis!</div>
+            <button id="createBtn" class="btn">Criar Sala</button>
+            <button id="joinBtn" class="btn btn-secondary">Entrar em Sala</button>
+        </div>
+    </div>
+
+    <!-- Tela Criar Sala -->
+    <div id="createScreen" class="screen">
+        <div class="form-container">
+            <h2>Criar Nova Sala</h2>
+            <form id="createForm">
+                <div class="form-group">
+                    <label>Seu Nome:</label>
+                    <input type="text" id="hostName" required placeholder="Digite seu nome">
+                </div>
+                <div class="form-group">
+                    <label>Dificuldade:</label>
+                    <select id="difficulty">
+                        <option value="easy">Iniciante 🟢</option>
+                        <option value="medium">Fã 🟡</option>
+                        <option value="hard">Expert 🔴</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Criar Sala</button>
+            </form>
+            <button class="btn btn-secondary" onclick="showScreen('menu')">Voltar</button>
+        </div>
+    </div>
+
+    <!-- Tela Entrar em Sala -->
+    <div id="joinScreen" class="screen">
+        <div class="form-container">
+            <h2>Entrar em Sala</h2>
+            <form id="joinForm">
+                <div class="form-group">
+                    <label>Seu Nome:</label>
+                    <input type="text" id="playerName" required placeholder="Digite seu nome">
+                </div>
+                <div class="form-group">
+                    <label>Código da Sala:</label>
+                    <input type="text" id="roomCode" required placeholder="Digite o código" maxlength="4">
+                </div>
+                <button type="submit" class="btn">Entrar na Sala</button>
+            </form>
+            <button class="btn btn-secondary" onclick="showScreen('menu')">Voltar</button>
+        </div>
+    </div>
+
+    <!-- Sala de Espera -->
+    <div id="waitingRoom" class="screen">
+        <div class="form-container">
+            <h2>Sala de Espera</h2>
+            <div class="room-code" id="roomCodeDisplay">----</div>
+            
+            <div class="players-list" id="playersList">
+                <!-- Lista de jogadores será inserida aqui -->
+            </div>
+            
+            <button id="startBtn" class="btn" style="display: none;">Iniciar Jogo</button>
+            <button id="backBtn" class="btn btn-secondary">Sair da Sala</button>
+        </div>
+    </div>
+
+    <!-- Tela de Jogo -->
+    <div id="gameScreen" class="screen">
+        <div class="game-container">
+            <div class="round-info" id="roundInfo">Rodada 1/3</div>
+            
+            <div class="emojis-display" id="emojisDisplay">
+                🎬 Prepare-se...
+            </div>
+            
+            <div class="answer-input">
+                <input type="text" id="answerInput" placeholder="Digite o nome do filme...">
+                <button id="submitBtn" class="btn">Enviar</button>
+            </div>
+            
+            <div class="timer-container">
+                <div class="timer-bar" id="timer">15</div>
+            </div>
+            
+            <div class="players-scores" id="playersScores">
+                <!-- Placar será inserido aqui -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Tela de Resultados -->
+    <div id="resultsScreen" class="screen">
+        <div class="results-container">
+            <h2>Fim do Jogo!</h2>
+            <div class="winner-announcement">
+                Vencedor: <span id="winnerName">---</span> 🏆
+            </div>
+            
+            <div class="final-scores" id="finalScores">
+                <!-- Resultados finais serão inseridos aqui -->
+            </div>
+            
+            <button id="playAgainBtn" class="btn">Jogar Novamente</button>
+            <button class="btn btn-secondary" onclick="location.reload()">Menu Principal</button>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="multiplayer.js"></script>
+</body>
+</html>
