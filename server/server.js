@@ -426,6 +426,7 @@ io.on('connection', (socket) => {
     });
 });
 
+// ✅ CORREÇÃO: Configuração para Render
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, '0.0.0.0', () => {
     console.log(`🎮 Servidor rodando na porta ${PORT}`);
